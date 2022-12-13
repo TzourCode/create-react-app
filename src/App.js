@@ -1,29 +1,39 @@
-// import logo from './logo.svg'
 import './App.css'
+import React from 'react'
+import LogRocket from 'logrocket'
+import { useCookies } from 'react-cookie'
 
 function App() {
+  const [cookies, setCookie] = useCookies()
+
+  function cookieFunction() {
+    setCookie('kaka', 'spinning cat', {
+      path: '/',
+    })
+  }
+
+  function activateLogrocket() {
+    alert('Consent to monitoring is approved🧐')
+    LogRocket.init('6wxva8/12react')
+  }
+
   return (
     <div className="App">
       <header className="App-header">
         <img
-          src={
-            'https://res.cloudinary.com/dfovxmnt0/image/upload/w_550,h_400,e_hue/poopglitter_zgrwpt.jpg'
-          }
+          src={process.env.REACT_APP_LINK}
           className="App-logo"
           alt="cdn pic"
         />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
+      <h1>cookies</h1>
+      <p>{cookies.kaka}</p>
+
+      <button onClick={cookieFunction}>Set Cookie</button>
+      <h1>monitoring/GDPR</h1>
+      <button onClick={activateLogrocket}>
+        Click this button for GDPR consent
+      </button>
     </div>
   )
 }
